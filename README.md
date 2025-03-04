@@ -1,2 +1,2 @@
-# The TeamVoided Template
-Template mod by TeamVoided
+# Scriptor Shush
+Small mod to silence scriptor messages in discord

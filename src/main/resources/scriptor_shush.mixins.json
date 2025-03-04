@@ -1,9 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.teamvoided.template.mixin",
+  "package": "org.teamvoided.scriptor_shush.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [ "DiscordIntegrationModMixin" ],
   "injectors": {
     "defaultRequire": 1
   }

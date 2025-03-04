@@ -22,19 +22,18 @@ val curse_id: String? by project
 repositories {
     maven("https://teamvoided.org/releases")
     maven("https://maven.terraformersmc.com/") { name = "Terraformers" }
+    maven("https://repo.erdbeerbaerlp.de/repository/maven-public/")
     mavenCentral()
 }
 
 println("Task: " + gradle.startParameter.taskNames.joinToString(","))
 
 modSettings {
-    entrypoint("main", "org.teamvoided.template.Template::init")
-    entrypoint("client", "org.teamvoided.template.TemplateClient::init")
-    entrypoint("fabric-datagen", "org.teamvoided.template.data.gen.TemplateData")
+    entrypoint("main", "org.teamvoided.scriptor_shush.ScriptorShush::init")
+    mixinFile("${modId()}.mixins.json")
 
-    mixinFile("${modId()}.client.mixins.json")
-//    mixinFile("${modId()}.mixins.json")
-//    accessWidener("${modId()}.accesswidener")
+    dependency("dcintegration-fabric", "*")
+    dependency("scriptor", "*")
 }
 
 dependencies {
@@ -43,6 +42,8 @@ dependencies {
 
     modCompileOnly("${libs.emi.get()}:api")
     modLocalRuntime(libs.emi)
+
+    compileOnly("de.erdbeerbaerlp:dcintegration.common:3.0.7")
 }
 
 loom {
@@ -86,7 +87,7 @@ tasks {
     jar {
         val valTaskNames = gradle.startParameter.taskNames
         if (!valTaskNames.contains("runDataGen")) {
-            exclude("org/teamvoided/template/data/gen/*")
+            exclude("org/teamvoided/scriptor_shush/data/gen/*")
         } else {
             println("Running datagen for task ${valTaskNames.joinToString(" ")}")
         }
