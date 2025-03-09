@@ -1,6 +1,6 @@
 package org.teamvoided.scriptor_shush
 
-import net.minecraft.util.Identifier
+import net.minecraft.resources.ResourceLocation
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -12,5 +12,6 @@ object ScriptorShush {
     val log: Logger = LoggerFactory.getLogger(ScriptorShush::class.simpleName)
 
     fun init() = log.info("Silencing spell casters since 1998")
-    fun id(path: String) = Identifier.of(MODID, path)
+
+    fun id(path: String) = ResourceLocation.fromNamespaceAndPath(MODID, path)
 }

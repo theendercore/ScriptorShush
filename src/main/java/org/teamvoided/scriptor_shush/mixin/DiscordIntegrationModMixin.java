@@ -1,10 +1,10 @@
 package org.teamvoided.scriptor_shush.mixin;
 
-import com.ssblur.scriptor.data.DictionarySavedData;
+import com.ssblur.scriptor.data.saved_data.DictionarySavedData;
 import de.erdbeerbaerlp.dcintegration.common.DiscordIntegration;
 import de.erdbeerbaerlp.dcintegration.fabric.DiscordIntegrationMod;
-import net.minecraft.network.message.SignedChatMessage;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.network.chat.PlayerChatMessage;
+import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,8 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class DiscordIntegrationModMixin {
 
     @Inject(method = "handleChatMessage", at = @At("HEAD"), cancellable = true)
-    private static void cancelScriptorMessages(SignedChatMessage message, ServerPlayerEntity player, CallbackInfoReturnable<SignedChatMessage> cir) {
-        if (DiscordIntegration.INSTANCE != null && DictionarySavedData.computeIfAbsent(player.getServerWorld()).parse(message.getContent()) != null)
+    private static void cancelScriptorMessages(PlayerChatMessage message, ServerPlayer player, CallbackInfoReturnable<PlayerChatMessage> cir) {
+        if (DiscordIntegration.INSTANCE != null && DictionarySavedData.computeIfAbsent(player.serverLevel()).parse(message.signedContent()) != null)
             cir.setReturnValue(message);
     }
 }

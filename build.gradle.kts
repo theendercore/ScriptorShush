@@ -23,6 +23,7 @@ repositories {
     maven("https://teamvoided.org/releases")
     maven("https://maven.terraformersmc.com/") { name = "Terraformers" }
     maven("https://repo.erdbeerbaerlp.de/repository/maven-public/")
+    maven("https://api.modrinth.com/maven/")
     mavenCentral()
 }
 
@@ -44,6 +45,7 @@ dependencies {
     modLocalRuntime(libs.emi)
 
     compileOnly("de.erdbeerbaerlp:dcintegration.common:3.0.7")
+//    modImplementation("maven.modrinth:scriptor-magicae:BgZJMNIY")
 }
 
 loom {
